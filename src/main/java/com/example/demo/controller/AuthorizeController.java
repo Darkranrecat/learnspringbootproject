@@ -9,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
+
 @Controller
 public class AuthorizeController {
 
@@ -21,11 +23,11 @@ public class AuthorizeController {
     private String clientSecret;
     @Value("${github.redirect.uri}")
     private String redirectUri;
-    
+
     @GetMapping("/callback")
     public String callback(@RequestParam(name="code") String code,
-                           @RequestParam(name="state") String state){
-        System.out.println(clientId+clientSecret+redirectUri);
+                           @RequestParam(name="state") String state,
+                           HttpServletRequest request){ //spring自动将上下文中的request放入供使用
         AccessTokenDTO accessTokenDTO = new AccessTokenDTO();
         accessTokenDTO.setCode(code);
         accessTokenDTO.setClient_id(clientId);
@@ -34,7 +36,14 @@ public class AuthorizeController {
         accessTokenDTO.setState(state);
         String accessToken = githubProvider.getAccessToken(accessTokenDTO);
         GithubUser user = githubProvider.getUser(accessToken);
-        System.out.println(user.getName());
-        return "index";
+        if(user != null) {
+            //登录成功
+            System.out.println("登录成功");
+            request.getSession().setAttribute("user",user);
+            return "redirect:/"; //redirect 导航栏地址重定向
+        }else{
+            //登录失败，重新登录
+            return "redirect:/";
+        }
     }
 }
