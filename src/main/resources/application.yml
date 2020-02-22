@@ -7,3 +7,11 @@ github:
     secret: c529ee4e1e8f332e5b17ebf786f008ae747e4216
   redirect:
     uri: http://localhost:8888/callback
+
+spring:
+  datasource:
+    url: jdbc:h2:D:\springboot\project\databases\demoDatabases
+    username: lin
+    password: 1
+    driver-class-name: org.h2.Driver
+
