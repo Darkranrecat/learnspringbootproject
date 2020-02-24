@@ -42,6 +42,7 @@ public class AuthorizeController {
         accessTokenDTO.setState(state);
         String accessToken = githubProvider.getAccessToken(accessTokenDTO);
         GithubUser githubUser = githubProvider.getUser(accessToken);
+
         if(githubUser != null) {
             //登录成功
             User user = new User();
@@ -56,6 +57,7 @@ public class AuthorizeController {
             return "redirect:/"; //redirect 导航栏地址重定向
         }else{
             //登录失败，重新登录
+            System.out.println("登录失败");
             return "redirect:/";
         }
     }
