@@ -3,7 +3,7 @@ package com.example.demo.model;
 public class User {
     private Integer id;
     private String name;
-    private String accountId;
+    private String account;
     private String token;
     private Long gmt_create;
     private Long gmt_modified;
@@ -24,12 +24,12 @@ public class User {
         this.name = name;
     }
 
-    public String getAccountId() {
-        return accountId;
+    public String getAccount() {
+        return account;
     }
 
-    public void setAccountId(String accountId) {
-        this.accountId = accountId;
+    public void setAccount(String account) {
+        this.account = account;
     }
 
     public String getToken() {

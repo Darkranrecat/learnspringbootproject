@@ -11,3 +11,16 @@
 ##工具  
 [Git](http://git-scm.com/download)  
 [Visual Paradigm](http://www.visual-paradigm.com)  
+##脚本
+```sql
+CREATE TABLE USER
+(
+  ID           INTEGER DEFAULT NEXT VALUE FOR "PUBLIC"."SYSTEM_SEQUENCE_3C9542E7_B58A_4BD6_A65E_4C4F6CC2DEA6" AUTO_INCREMENT PRIMARY KEY NOT NULL,
+  ACCOUNT      VARCHAR(100),
+  NAME         VARCHAR(50),
+  TOKEN        VARCHAR(36),
+  GMT_CREATE   BIGINT,
+  GMT_MODIFIED BIGINT
+)
+
+```

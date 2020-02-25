@@ -45,15 +45,16 @@ public class AuthorizeController {
 
         if(githubUser != null) {
             //登录成功
+            System.out.println("登录成功");
             User user = new User();
             user.setToken(UUID.randomUUID().toString());
-            user.setAccountId(String.valueOf(githubUser.getId()));
+            user.setAccount(String.valueOf(githubUser.getId()));
             user.setName(githubUser.getName());
             user.setGmt_create(System.currentTimeMillis());
             user.setGmt_modified(user.getGmt_create());
             userMapper.insert(user);
-            System.out.println("登录成功");
-            request.getSession().setAttribute("githubUser",githubUser);
+
+            request.getSession().setAttribute("user",user);
             return "redirect:/"; //redirect 导航栏地址重定向
         }else{
             //登录失败，重新登录
