@@ -7,6 +7,6 @@ public class GithubUser {
     private String name;
     private Long id;
     private String bio;
-    private String avatar_url;
+    public String avatarUrl;//fastjson自动转换驼峰命名，两者都行，而mybatis似乎不行
 
 }

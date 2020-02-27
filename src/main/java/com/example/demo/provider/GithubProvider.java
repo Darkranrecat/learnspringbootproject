@@ -24,8 +24,7 @@ public class GithubProvider {
         try (Response response = client.newCall(request).execute()) {
             String string = response.body().string();
             String token = string.split("&")[0].split("=")[1];
-            System.out.println(string);
-            System.out.println(token);
+            System.out.println("aaa");
 
             return token;
         } catch (Exception e) {
@@ -46,9 +45,9 @@ public class GithubProvider {
             String string = response.body().string();//接收到json数据
             System.out.println("1111");
             System.out.println(string);
+            //fastjson自动转换驼峰命名，两者都行，而mybatis似乎不行
             GithubUser githubUser = JSON.parseObject(string, GithubUser.class);
             System.out.println("22222");
-            System.out.println(githubUser);
             return githubUser;
         } catch (IOException e) {
             e.printStackTrace();

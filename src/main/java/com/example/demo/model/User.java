@@ -10,8 +10,8 @@ public class User {
     private String name;
     private String account;
     private String token;
-    private Long gmt_create;
-    private Long gmt_modified;
-    private String avatar_url;
+    private Long gmtCreate;
+    private Long gmtModified;
+    private String avatarUrl;
 
 }

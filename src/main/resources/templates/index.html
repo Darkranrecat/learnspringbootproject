@@ -60,7 +60,7 @@
                 <div class="media-left">
                     <a href="#">
                         <img class="media-object img-rounded media-object"
-                             th:src="${question.user.getAvatar_url()}">
+                             th:src="${question.user.getAvatarUrl()}">
                     </a>
                 </div>
                 <div class="media-body">
@@ -72,7 +72,7 @@
 
                         <span th:if="${question.viewCount != null}"><span th:text="${question.viewCount}"></span></span>
                         <span th:if="${question.viewCount == null}"><span th:text="0"></span></span><span>个浏览•</span>
-                        <span th:text="${#dates.format(question.gmtCreate,'yyy MMM dd')}"></span>
+                        <span th:text="${#dates.format(question.gmtCreate,'yyy-MM-dd HH:mm')}"></span>
                     </div>
                 </div>
             </div>

@@ -41,6 +41,9 @@ public class IndexController
         }
 
         List<QuestionDTO> questionList = questionService.list();
+        for(QuestionDTO questionDTO : questionList){
+            questionDTO.setDescription("ref set");
+        }
         model.addAttribute("questionList",questionList);
 //        for(QuestionDTO question:questionList){
 //            System.out.println(question.limitDescription(question.getDescription()));;
