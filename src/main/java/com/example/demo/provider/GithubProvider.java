@@ -24,6 +24,7 @@ public class GithubProvider {
         try (Response response = client.newCall(request).execute()) {
             String string = response.body().string();
             String token = string.split("&")[0].split("=")[1];
+            System.out.println(string);
             System.out.println(token);
 
             return token;
@@ -35,6 +36,7 @@ public class GithubProvider {
 
     //Get a URL by okhttp
     public GithubUser getUser(String accessToken){
+        System.out.println("开始post");
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
                 .url("https://api.github.com/user?access_token="+accessToken)
@@ -42,10 +44,14 @@ public class GithubProvider {
         try {
             Response response = client.newCall(request).execute();
             String string = response.body().string();//接收到json数据
+            System.out.println("1111");
+            System.out.println(string);
             GithubUser githubUser = JSON.parseObject(string, GithubUser.class);
+            System.out.println("22222");
             System.out.println(githubUser);
             return githubUser;
         } catch (IOException e) {
+            e.printStackTrace();
         }
         return null;
     }

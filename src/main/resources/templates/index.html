@@ -3,19 +3,21 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>社区demo</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <script type="text/javascript"src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
     <script src="js/bootstrap.min.js" type="application/javascript"></script>
     <script src="js/bootstrap.js" type="application/javascript"></script>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="css/demo.css">
 </head>
 <body>
 <nav class="navbar navbar-default">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                 <span class="sr-only">社区demo</span>
             </button>
             <a class="navbar-brand" href="/">社区demo</a>
@@ -34,7 +36,8 @@
                     <a href="/publish">发布</a>
                 </li>
                 <li class="dropdown" th:if="${session.user != null}">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" th:text="${session.user.getName()}"> <span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false" th:text="${session.user.getName()}"> <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="#">个人资料</a></li>
                         <li><a href="#">消息中心</a></li>
@@ -42,10 +45,42 @@
                     </ul>
                 </li>
                 <li th:if="${session.user == null}">
-                    <a href="https://github.com/login/oauth/authorize?client_id=a9886e4b22296f4c107a&redirect_uri=http://localhost:8888/callback&scope=user&state=1">登录</a></li>
+                    <a href="https://github.com/login/oauth/authorize?client_id=a9886e4b22296f4c107a&redirect_uri=http://localhost:8888/callback&scope=user&state=1">登录</a>
+                </li>
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
+<div class="container-fluid main">
+    <div class="row">
+        <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+            <h2><span class="glyphicon glyphicon-list" aria-hidden="true"></span> 发现</h2>
+            <hr>  <!--分割线-->
+            <div class="media" th:each="question : ${questionList}">
+                <div class="media-left">
+                    <a href="#">
+                        <img class="media-object img-rounded media-object"
+                             th:src="${question.user.getAvatar_url()}">
+                    </a>
+                </div>
+                <div class="media-body">
+                    <h4 class="media-heading" th:text="${question.title}"></h4>
+                    <div th:text="${question.getLimitDescription()}"></div>
+                    <div class="comment">
+                        <span th:if="${question.commentCount != null}"><span th:text="${question.commentCount}"></span></span>
+                        <span th:if="${question.commentCount == null}"><span th:text="0"></span></span><span>个回复•</span>
+
+                        <span th:if="${question.viewCount != null}"><span th:text="${question.viewCount}"></span></span>
+                        <span th:if="${question.viewCount == null}"><span th:text="0"></span></span><span>个浏览•</span>
+                        <span th:text="${#dates.format(question.gmtCreate,'yyy MMM dd')}"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+            <h3>热门话题 </h3>
+        </div>
+    </div>
+</div>
 </body>
 </html>

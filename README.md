@@ -8,6 +8,7 @@
 [Bootstrap](http://v3.bootcss.com/getting-started/)
 [Github OAuth](http://developer.github.com/apps/building-oauth-apps/creating-an-oauth-app/)  
 [Spring database](https://docs.spring.io/spring-boot/docs/2.0.0.RC1/reference/htmlsingle/#boot-features-embedded-database-support)  
+[thyleaf](https://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html#setting-attribute-values)  
 ## 工具  
 [Git](http://git-scm.com/download)  
 [Visual Paradigm](http://www.visual-paradigm.com)  

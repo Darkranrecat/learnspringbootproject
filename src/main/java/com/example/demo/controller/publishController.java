@@ -28,14 +28,16 @@ public class publishController {
 
         User user = null;
         Cookie[] cookies = request.getCookies();
-        for(Cookie cookie : cookies){
-            if(cookie.getName().equals("token")){
-                String token = cookie.getValue();
-                user = userMapper.findByToken(token);
-                if(user != null){
-                    request.getSession().setAttribute("user",user);
+        if(cookies != null){
+            for(Cookie cookie : cookies){
+                if(cookie.getName().equals("token")){
+                    String token = cookie.getValue();
+                    user = userMapper.findByToken(token);
+                    if(user != null){
+                        request.getSession().setAttribute("user",user);
+                    }
+                    break;
                 }
-                break;
             }
         }
 
@@ -56,14 +58,16 @@ public class publishController {
 
         User user = null;
         Cookie[] cookies = request.getCookies();
-        for(Cookie cookie : cookies){
-            if(cookie.getName().equals("token")){
-                String token = cookie.getValue();
-                user = userMapper.findByToken(token);
-                if(user != null){
-                    request.getSession().setAttribute("user",user);
+        if(cookies != null){
+            for(Cookie cookie : cookies){
+                if(cookie.getName().equals("token")){
+                    String token = cookie.getValue();
+                    user = userMapper.findByToken(token);
+                    if(user != null){
+                        request.getSession().setAttribute("user",user);
+                    }
+                    break;
                 }
-                break;
             }
         }
         if(user == null){
